@@ -1,0 +1,30 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build / compiled output
+bin/
+obj/
+Debug/
+Release/
+
+# Test results
+TestResults/
+*.trx
+
+# NuGet
+packages/
+*.nupkg
+
+# Build files
+Debug/
+Release/
+x64/
+x86/
+
+# Code coverage
+coverage/
+*.coverage
