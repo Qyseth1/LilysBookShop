@@ -26,7 +26,7 @@ namespace LilysBookShop.ViewModels
             AboutCommand = new Command(About);
         }
 
-
+        //Saving changes.
         private void Save()
         {
             _messageService.Show("Saved!", "Save");
