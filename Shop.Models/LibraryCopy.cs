@@ -1,7 +1,7 @@
 ﻿namespace Shop.Models
 {
     public class LibraryCopy
-    {
+    {       
         public int Id { get; set; }
 
         public string InventoryNumber { get; set; } = "";

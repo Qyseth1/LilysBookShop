@@ -1,18 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Shop.Data;
+using Shop.Models;
+using System.Collections.ObjectModel;
 
 namespace LilysBookShop.ViewModels
 {
     public class UsersViewModel
     {
-        //private readonly IUserService _userService;
+        private readonly UserRepository _userRepository;
 
-        //public UsersViewModel(IUserService userService)
-        //{
-        //    _userService = userService;
-        //}
+        public ObservableCollection<User> Users { get; } = new();
+
+        public UsersViewModel(UserRepository userRepository)
+        {
+            _userRepository = userRepository;
+        }
+
+        public async Task LoadUsersAsync()
+        {
+            var users = await _userRepository.GetUsersAsync();
+
+            Users.Clear();
+
+            foreach (var user in users)
+            {
+                Users.Add(user);
+            }
+        }
     }
 }

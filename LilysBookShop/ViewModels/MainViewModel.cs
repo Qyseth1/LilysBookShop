@@ -1,12 +1,16 @@
 ﻿using SharedLibrary.Commands;
-using SharedLibrary.Interfaces.Services;
+using Shop.Data;
+using Shop.Models;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 
 namespace LilysBookShop.ViewModels
 {
     public class MainViewModel
     {
-        private readonly IMessageService _messageService;
+        private readonly UserRepository _userRepository;
+
+        public ObservableCollection<User> Users { get; } = new();
 
         public ICommand SaveCommand { get; }
         public ICommand NewCommand { get; }
@@ -14,10 +18,9 @@ namespace LilysBookShop.ViewModels
         public ICommand ExitCommand { get; }
         public ICommand AboutCommand { get; }
 
-
-        public MainViewModel(IMessageService messageService)
+        public MainViewModel(UserRepository userRepository)
         {
-            _messageService = messageService;
+            _userRepository = userRepository;
 
             SaveCommand = new Command(Save);
             NewCommand = new Command(New);
@@ -26,34 +29,39 @@ namespace LilysBookShop.ViewModels
             AboutCommand = new Command(About);
         }
 
-        //Saving changes.
-        private void Save()
+        // for now... for the test, dont use async void!!!... AsyncCommand must be implemented. 
+        private async void Save()
         {
-            _messageService.Show("Saved!", "Save");
+            await LoadUsersAsync();
         }
 
+        public async Task LoadUsersAsync()
+        {
+            var users = await _userRepository.GetUsersAsync();
+
+            Users.Clear();
+
+            foreach (var user in users)
+            {
+                Users.Add(user);
+            }
+        }
 
         private void New()
         {
-            _messageService.Show("New clicked");
         }
-
 
         private void Open()
         {
-            _messageService.Show("Open clicked");
         }
-
 
         private void Exit()
         {
-            System.Windows.Application.Current.Shutdown();
+            //Application.Current.Shutdown();
         }
-
 
         private void About()
         {
-            _messageService.Show("WPF Menu Example\nVersion 1.0", "About");
         }
     }
 }

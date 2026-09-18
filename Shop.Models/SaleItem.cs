@@ -9,13 +9,17 @@
         public decimal UnitPrice { get; set; }
 
         // Sale
+        // FK
         public int SaleId { get; set; }
 
+        // Navigation Property
         public Sale Sale { get; set; } = null!;
 
         // Book
+        // FK
         public int BookId { get; set; }
 
+        // Navigation Property
         public Book Book { get; set; } = null!;
     }
 }

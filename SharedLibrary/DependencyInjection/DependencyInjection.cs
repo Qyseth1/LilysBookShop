@@ -13,6 +13,7 @@ namespace SharedLibrary.DependencyInjection
             //services.AddSingleton<IDataService, DataService>();
             //services.AddTransient<IUserService, UserService>();            
             // services.AddSingleton<ILoggingService, LoggingService>();
+            
 
             return services;
         }

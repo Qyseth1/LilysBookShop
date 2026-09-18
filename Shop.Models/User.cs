@@ -14,6 +14,7 @@
 
         public DateTime CreatedAt { get; set; }
 
+        // Navigation Property
         public ICollection<Borrowing> Borrowings { get; set; }
             = new List<Borrowing>();
     }
